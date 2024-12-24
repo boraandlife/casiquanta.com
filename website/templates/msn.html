@@ -1,0 +1,279 @@
+{% extends "index.html" %}
+{% block title %} MSN {% endblock %}
+
+{% block special_head %}
+
+{% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+          
+        .outer {
+            width: 90vw;
+            height: 90vh;
+            margin: 
+            border: 10px solid rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            position:relative; 
+            top:20px;
+            right:180px;
+        }
+          
+        .inner {
+            width: 90vw;
+            height: 70vh;
+            margin: auto;
+            
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            padding: 5px;
+            position:relative; 
+            
+            
+        }
+
+        .onlinetable {
+            width: 15%;
+            height: 80%;
+            margin: auto;
+            
+            float: right;
+            
+            position: relative;
+            
+            color:goldenrod;
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            
+             
+            
+            
+        }
+
+        .online {
+            
+            color:darkgreen;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .offline {
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .iconbutton {
+            
+            color:goldenrod;
+            
+            background: rgba(0, 0, 0, .4);
+
+            bottom: 2px;
+
+            float: right;
+            
+            position:relative; 
+            
+            
+        }
+
+        .type-input {
+            
+            position:relative; 
+            
+            
+            width: 50%;
+            
+            
+            position:absolute;
+            bottom: 0%;
+            left: 25%;
+            
+            
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            
+
+            
+
+            
+
+            
+
+            
+        }
+
+        .type-box {
+            position:absolute;
+            height:50%;
+            width:50%;
+            border:1px;
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+             overflow-y: auto;
+
+            text-align:left;
+
+            bottom: 250px;
+
+            left: 25%;
+            top: 25%;
+
+
+            scroll-snap-align: end;
+
+            
+        }
+    </style>
+{% endblock %}
+
+
+
+{%block section1%}
+
+<header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                	<form method="POST">
+					
+        			<div class="inner">
+						<h1>Q-MSN</h1>
+
+						<div  class="onlinetable">
+                            <h2 style="color:goldenrod; margin: auto;text-align: center; ">FRIENDS</h2>
+							{% for member in members %}
+                            {% if member != user %}
+							{% if member.stat %}
+                            <form method="POST">
+                                
+							<p class="online">{{member.username}} <button   onclick=action="{{ url_for('views.msnn', qmsnusername=member.username) }}" class="iconbutton" class="icon icon-enter"><i class="   fas fa-paper-plane"></i></button> </p>
+							{% else %}
+							<p class="offline">{{member.username}} <button  onclick=action="{{ url_for('views.msnn', qmsnusername=member.username) }}" class="iconbutton" class="icon icon-enter"><i class="  fas fa-paper-plane"></i></button> </p>
+                                
+                            </form>
+							{% endif %}
+                            {% endif %}
+							{%endfor%}
+
+						</div>
+
+                        <div id="divoo" onscroll="myFunction()" class="type-box" >
+                            <div  id="demo" style=" solid #ccc;font:16px/26px Georgia, Garamond, Serif;">
+                            
+                            
+
+                            <script>
+                            const message1 = {{ message1|tojson }}
+                            const myArray = message1.split("ß");
+
+                           
+
+
+                            let text = "";
+                            for (let i = 0; i < myArray.length; i++) {
+                              text += myArray[i] + "<br>";
+                            }
+                                                        
+
+                           //Every <br> is 30
+                            
+                            document.getElementById("demo").innerHTML = text; 
+                            //let d = new Date();
+                            //document.body.innerHTML = "<h1>Today's date is " + d + "</h1>"
+                            </script>
+
+                            <script>
+                            function myFunction() {
+                              const element = document.getElementById("divoo");
+                              let x = element.scrollLeft;
+                              let y = element.scrollTop;
+                              let z = element.scrollHeight;
+
+                              //Every <br> is 30
+
+                              var messageBody = document.querySelector('#divoo');
+                              messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+                              
+                                
+
+                              
+                                
+                              //document.getElementById ("demo2").innerHTML = "Horizontally: " + x.toFixed() + "<br>Vertically: " + y.toFixed() + "<br>Height: " + z.toFixed();
+                            }
+                            </script>
+
+                            
+
+                            </div>
+                        </div>
+
+                        <div >
+                            <form method="POST">
+                            <div class="form-group">
+                            <button  style="position:absolute; left: 7%; "class="btn btn-warning" type="input">Clear Cache!</button>
+                            <button  style="position:absolute; left: 7%; bottom: 0%; " onclick=action="{{ url_for('views.perfilz', user_name=msnuser) }}" class="btn btn-primary" class="btn btn-warning" type="input"><- BACK</button>
+
+                            </div>
+                            </form>
+                        </div>
+
+
+                        <div >
+                            <form method="POST">
+                            <div class="form-group">
+                            <input id="msn-input" name="msn-input"  class="type-input" type="input"></input>
+                            </div>
+                            </form>
+                        </div>
+
+
+           			      
+        			</div>
+    			</div>
+    		</div>
+                
+
+					
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}

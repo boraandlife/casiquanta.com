@@ -1,0 +1,78 @@
+{% extends "index.html" %}
+{% block title %} Login {% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+
+ .fixer {
+            
+            margin: auto;
+            top: 100px;
+            
+            text-align: center;
+            
+            
+            position:relative; 
+            
+            
+        }
+
+   </style>
+
+  {% endblock %}
+
+{%block section1%}
+<header class="masthead">
+            <div class="fixer" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div  class="d-flex justify-content-center">
+                	<form method="POST" enctype="multipart/form-data">
+                	
+					<h1 align="center">{{ user.first_name }}</h1>
+					       
+					<li><img src="data:image/jpg;base64,{{images}}" width=300 height="300"></li>
+					<br></br>
+					<label style="color:goldenrod;" for="photo">Name: {{ user.first_name }}</label>
+					<br></br>
+					<label style="color:goldenrod;" for="photo">Username (Q&A): {{ user.username }}</label>
+					<br></br>
+					<label style="color:goldenrod;" for="photo">Email: {{ user.email }}</label>
+					<br></br>
+					{% if user.is_authenticated %}
+					<label style="color:goldenrod;" for="photo">Status: <img src="{{ url_for('static', filename='assets/img/online.png') }}" width="30" height="30"> </label>
+					{% else %}
+					<label style="color:goldenrod;" for="photo">Status: <img src="{{ url_for('static', filename='assets/img/offline.png') }}" width="30" height="30"> </label>
+					{% endif %}
+					<br></br>
+					<form method="POST">
+					<input type="submit"  value="Friends" onclick=value="Loading" class="btn btn-primary" name="friend_redirect" id="friend_redirect" ></input>
+					<input type="submit" value="Profile Settings"  onclick=value="Loading" class="btn btn-primary" name="perfil_settings" id="perfil_settings" ></input>
+					</form>
+					
+					
+					
+                </div>
+            </div>
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}

@@ -1,0 +1,271 @@
+{% extends "index.html" %}
+{% block title %} Login {% endblock %}
+
+{% block special_head %}
+
+{% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+          
+        .outer {
+            width: 90vw;
+            height: 90vh;
+            margin: 
+            border: 10px solid rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            position:relative; 
+            top:20px;
+            right:180px;
+        }
+          
+        .inner {
+            width: 90vw;
+            height: 90vh;
+            margin: auto;
+
+            overflow-y: auto;
+            
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            padding: 5px;
+            position:relative; 
+            top:70px;
+            
+        }
+        
+       
+
+        .onlinetable {
+            position: relative;
+            width: 15%;
+            height: 80%;
+            
+            
+            float: right;
+            
+            
+            
+            color:goldenrod;
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            
+             
+            
+            
+        }
+
+        .online {
+            
+            color:darkgreen;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .offline {
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .iconbutton {
+            
+            color:goldenrod;
+            
+            background: rgba(0, 0, 0, .4);
+
+            bottom: 2px;
+
+            float: right;
+            
+            position:relative; 
+            
+            
+        }
+        .pending-box {
+            position:absolute;
+            height:25%;
+            width:50%;
+            border:1px;
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+             overflow-y: auto;
+
+            text-align:left;
+
+            bottom: 250px;
+
+            left: 25%;
+            top: 25%;
+
+
+            scroll-snap-align: end;
+
+            
+        }
+
+        .sent-box {
+            position:absolute;
+            height:25%;
+            width:50%;
+            border:1px;
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+             overflow-y: auto;
+
+             text-align: left;
+            
+
+            
+
+            left: 25%;
+            top: 50%;
+
+
+            scroll-snap-align: end;
+
+            
+        }
+    </style>
+{% endblock %}
+
+
+
+{%block section1%}
+
+<header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                	<form method="POST">
+					
+        			<div class="inner">
+						<h1>Friend Box</h1>
+						<div id="otable" class="onlinetable">
+
+                            
+                            <h2 style="color:goldenrod; margin: auto;text-align: center; ">FRIENDS</h2>
+							{% for friend in friends %}
+							{% if friend.stat %}
+							<p class="online">{{friend.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=friend.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-user"></i></button> </p>
+							{% else %}
+							<p class="offline">{{friend.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=friend.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-user"></i></button> </p>
+							{% endif %}
+							{%endfor%}
+
+						</div>
+
+
+
+                         <div id="divoo" onscroll="myFunction()" class="sent-box" >
+                            <div  id="demo" style=" solid #ccc;font:16px/26px Georgia, Garamond, Serif;">
+                            <h2 style="color:goldenrod; margin: auto;text-align: center; ">SENT FRIEND REQUESTS</h2>
+                            </div>
+
+                            
+
+                            
+
+                            {% for friend in sents %}
+                            {% if friend.stat %}
+                            <p class="online">{{friend.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=friend.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-user"></i></button> </p>
+                            {% else %}
+                            <p class="offline">{{friend.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=friend.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-user"></i></button> </p>
+                            {% endif %}
+                            {%endfor%}
+
+                            
+                            <script>
+                            function myFunction() {
+                              const element = document.getElementById("divoo");
+                              let x = element.scrollLeft;
+                              let y = element.scrollTop;
+                              let z = element.scrollHeight;
+
+                              //Every <br> is 30
+
+                              var messageBody = document.querySelector('#divoo');
+                              messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+                              
+                            }
+                            </script>
+
+                           
+                        </div>
+
+                        <div id="divoo2" onscroll="myFunction()" class="pending-box" >
+                            <div  id="demo2" style=" solid #ccc;font:16px/26px Georgia, Garamond, Serif;">
+                            <h2 style="color:goldenrod; margin: auto;text-align: center; ">PENDING FRIEND REQUESTS</h2>
+                            </div>
+                            {% for friend in pendings %}
+                            {% if friend.stat %}
+                            <p class="online">{{friend.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=friend.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-check"></i></button> </p>
+                            {% else %}
+                            <p class="offline">{{friend.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=friend.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-check"></i></button> </p>
+                            {% endif %}
+                            {%endfor%}
+
+                            <script>
+                            function myFunction() {
+                              const element = document.getElementById("divoo");
+                              let x = element.scrollLeft;
+                              let y = element.scrollTop;
+                              let z = element.scrollHeight;
+
+                              //Every <br> is 30
+
+                              var messageBody = document.querySelector('#divoo');
+                              messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+                              
+                            }
+                            </script>
+                        </div>
+
+           			 
+        			</div>
+    			</div>
+    		</div>
+
+					
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}

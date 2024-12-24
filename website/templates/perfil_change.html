@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+{% block title %} Login {% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+
+ .fixer {
+            
+            margin: auto;
+            top: 100px;
+            
+            text-align: center;
+            
+            
+            position:relative; 
+            
+            
+        }
+
+   </style>
+
+  {% endblock %}
+{%block section1%}
+<header class="masthead">
+            <div class="fixer" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                	<form method="POST" enctype="multipart/form-data">
+					
+					       
+					<li><img src="data:image/jpg;base64,{{images}}" width=300 height="300"></li>         
+					
+					<div class="form-group">
+						<label style="color:goldenrod;" for="photo">New Profile Photo</label>
+						<input 
+						type="file" 
+						class="form-control" 
+						id="photo" 
+						name="pic" 
+						placeholder="Drag Your Photo Here!"/>
+						
+						</input>
+						<div class='text-center'>
+						<button type="submit" class="btn btn-primary ">Change Profile Photo</button>
+						</div>
+					</div>
+					<br></br>
+					<div class="form-group">
+						<label style="color:goldenrod;" for="email">New Email Address</label>
+						<input 
+						type="email" 
+						class="form-control" 
+						id="email" 
+						name="email" 
+						placeholder="Enter email"/>
+						
+						</input>
+						<div class='text-center'>
+						<button type="submit" class="btn btn-primary">Change Email</button>
+						</div>
+					</div>
+					<br></br>
+					<div class="form-group">
+						<label style="color:goldenrod;" for="password">New Password</label>
+						<input 
+						type="password" 
+						class="form-control" 
+						id="password" 
+						name="password" 
+						placeholder="Enter password"/>
+						</input>
+						<div class='text-center'>
+						<button type="submit" class="btn btn-primary">Change Password</button>
+						</div>
+					</div>
+					<br />
+					
+                </div>
+            </div>
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}

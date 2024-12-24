@@ -1,0 +1,537 @@
+{% extends "index.html" %}
+{% block title %} News {% endblock %}
+
+{% block special_head %}
+
+{% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+          
+        .outer {
+            width: 90vw;
+            height: 90vh;
+            margin: 
+            border: 10px solid rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            position:relative; 
+            top:20px;
+            right:180px;
+        }
+          
+        .inner {
+            width: 90vw;
+            height: 90vh;
+            margin: auto;
+            
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            padding: 5px;
+            position:relative; 
+            top:70px;
+            
+        }
+        
+       
+
+        .onlinetable {
+            position: relative;
+            width: 10%;
+            height: 80%;
+            
+            
+            float: right;
+            
+            
+            
+            color:goldenrod;
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            
+             
+            
+            
+        }
+
+        .online {
+            
+            color:darkgreen;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .offline {
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .iconbutton {
+            
+            color:goldenrod;
+            
+            background: rgba(0, 0, 0, .4);
+
+            bottom: 2px;
+
+            float: right;
+            
+            position:relative; 
+            
+            
+        }
+
+        .type-input {
+            
+            position:relative; 
+            
+            
+            width: 50%;
+            
+            
+            position:absolute;
+            bottom: 0%;
+            left: 25%;
+            
+            
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+
+            
+        }
+
+
+        .type-input2 {
+            
+            position:relative; 
+            
+            height: 5%;
+            width: 10%;
+            
+            
+            position:absolute;
+            bottom: 0%;
+            left: 10%;
+            top: 15%;
+            
+            
+            
+            color:darkgoldenrod;
+            
+            background: rgba(0, 0, 0, .4);
+            
+
+            
+        }
+
+        .type-input3 {
+            
+            position: absolute;
+
+            bottom: 0%;
+            left: 10%;
+            top: 15%;
+            height: 30%;
+
+            text-align: left;
+
+            margin: auto;
+
+            overflow : scroll;
+            overflow-y: auto;
+            
+            
+            
+            color:darkgoldenrod;
+            
+            background: rgba(0, 0, 0, .4);
+            
+
+            
+        }
+
+
+        
+
+        .type_min_box{
+
+            position: absolute;
+            height: 5%;
+            width: 14%;
+
+
+            background: rgba(0, 0, 0, .4);
+            
+             
+
+            text-align: center;
+
+            color: darkgoldenrod;
+
+
+
+        }
+
+        .type-box {
+            position:absolute;
+            height:75%;
+            width:75%;
+            border:1px;
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+             
+
+            text-align:left;
+
+            left: 12.5%;
+            
+        }
+
+        .type-box-limited{
+            position:absolute;
+            height:30%;
+            width:70%;
+            border:1px;
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            top: 20%;
+            left: 15%;
+
+            text-align:left;
+            overflow-y: auto;
+
+            
+
+                
+            }
+    </style>
+{% endblock %}
+
+
+
+{%block section1%}
+
+<header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <form method="POST">
+                    
+                    <div class="inner">
+                        <h1>Q-NEWS</h1>
+
+                        <div  class="onlinetable">
+                            <h2 style="color:goldenrod; margin: auto;text-align: center; ">FRIENDS</h2>
+                            {% for member in members %}
+                            {% if member != user %}
+                            {% if member.stat %}
+                            <form method="POST">
+                                
+                            <p class="online">{{member.username}} <button   id="online-but1" name="online-but1" onclick=action="{{ url_for('views.perfilz', user_name=member.username) }}" class="iconbutton" class="icon icon-enter"><i class="   fas fa-paper-plane"></i></button> </p>
+                            {% else %}
+                            <p class="offline">{{member.username}} <button id="online-but1" name="online-but1" onclick=action="{{ url_for('views.perfilz', user_name=member.username) }}" class="iconbutton" class="icon icon-enter"><i class="  fas fa-paper-plane"></i></button> </p>
+                                
+                            </form>
+                            {% endif %}
+                            {% endif %}
+                            {%endfor%}
+
+                        </div>
+
+                        
+                         
+
+                        <div >
+                            <form method="POST">
+                            <div class="form-group">
+                            
+
+                            </div>
+                            </form>
+                        </div>
+
+
+
+                        <div class="type-box">
+                            {% if user.is_admin == False %}
+                            <div style=" position: absolute; left: 2%; top: 2%;">
+                                <input  value="General" id="G" name="G" type="submit"  class="btn btn-dark"></input>
+                            
+                            
+                                 <input  value="MuonTech" id="MT" name="MT" type="submit"  class="btn btn-dark"></input>
+                           
+                                 <input  value="Medical" id="M" name="M" type="submit"  class="btn btn-dark"></input>
+                            
+                            
+                                 <input  value="Computer & Software" id="CS" name="CS" type="submit"  class="btn btn-dark"></input>
+
+                                 <input  value="Electrical ENG" id="EE" name="EE" type="submit"  class="btn btn-dark"></input>
+                            
+                            
+                                 <input style="position: relative; left: 6%;" value="Report A Problem" id="RAP" name="RAP" type="submit"  class="btn btn-danger"></input>
+                            </div>
+                            
+                            {% else %}
+                            <div style=" position: absolute; left: 2%; top: 2%;">
+                                <input  value="Create New Content" id="CNC" name="CNC" type="submit"  class="btn btn-dark"></input>
+                            
+                            
+                                 <input  value="Edit Existing Content" id="EEC" name="EEC" type="submit"  class="btn btn-dark"></input>
+                            
+                            
+                                 <input  value="View Statistics" id="VS" name="VS" type="submit"  class="btn btn-dark"></input>
+                            
+                            
+                                 <input  value="Report" id="RAC" name="RAC" type="submit"  class="btn btn-danger"></input>
+                            </div>
+                            
+                            
+                            {% endif %}
+                        
+
+
+                        
+                        {% if user.is_admin == True and admin_cond == 1%}
+
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 5%; left: 2%; top: 15%;">Admin:</p>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 8%; top: 15%;">{{user.username}}</p>
+                                
+
+                                
+                        </div>
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 10%; left: 2%; top: 26%;">Spec ID:</p>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 17%; top: 26%;">{{spcid}}</p>
+                        </div>
+                        
+
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 5%; left: 2%; top: 36%;">Title:</p>
+                                
+                        </div>
+                        
+                            
+                            
+                        <div>
+                            <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 40%; left: 40%; top: 36%;">{{title1}}</p>
+                        </div>
+
+
+                    <form method="POST">
+                    
+                    <div >
+                        
+                        <input 
+                        style="top: 25%; width: 5%;"
+                         
+                        class="type-input2"
+                        id="specid-input" 
+                        name="specid-input"
+                        type="input"/>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        
+                        <input 
+                        style="top: 35%; width: 25%;"
+                        
+                        class="type-input2"
+                        id="title-input"
+                        name="title-input" 
+                        type="input"
+                        />
+                    </div>
+                    <br />
+                    <div >
+                        
+                        <textarea 
+                        style="top: 45%; width: 75%; height: 50%;"
+                         
+                        class="type-input3"
+                        id="content-input" 
+                        name="content-input"
+                        ></textarea>
+                    </div>
+                    <button style="position: absolute; top: 100%;width: 95%;" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                
+                            
+                    {%endif%}
+
+
+                    {% if user.is_admin == True and admin_cond == 2%}
+                        {% if edit == 0%}
+                    
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 5%; left: 2%; top: 17%;">Admin:</p>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 5%; left: 20%; top: 17%;">{{adminid}}</p>
+                                
+
+                                
+                        </div>
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 10%; left: 2%; top: 26%;">Spec ID:</p>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 20%; top: 26%;">{{spcid}}</p>
+                        </div>
+                        
+
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 5%; left: 2%; top: 36%;">Title:</p>
+                                
+                        </div>
+                        
+                            
+                            
+                        <div>
+                            <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 40%; left: 40%; top: 36%;">{{title1}}</p>
+                        </div>
+
+
+                    <form method="POST">
+
+                    <div >
+                        
+                        <input 
+                        style="top: 17%; width: 8%;"
+                         
+                        class="type-input2"
+                        id="admin_id_return" 
+                        name="admin_id_return"
+                        type="input"/>
+                    </div>
+                    <br />
+                    
+                    <div >
+                        
+                        <input 
+                        style="top: 25%; width: 8%;"
+                         
+                        class="type-input2"
+                        id="specid-input" 
+                        name="specid-input"
+                        type="input"/>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        
+                        <input 
+                        style="top: 35%; width: 25%;"
+                        
+                        class="type-input2"
+                        id="title-input"
+                        name="title-input" 
+                        type="input"
+                        />
+                    </div>
+                    <br />
+                    
+                    <button style="position: absolute; top: 100%;width: 95%;" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                        {%endif%}
+
+                        {% if edit == 1%}
+                    
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 2%; top: 17%;">Current Admin:</p>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 17%; top: 17%;">{{adminid}}</p>
+                                
+
+                                
+                        </div>
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 25%; top: 17%;">Current Spec ID:</p>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 42%; top: 17%;">{{spcid}}</p>
+                        </div>
+                        
+
+                        <div>
+                                <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 15%; left: 45%; top: 17%;">Current Title:</p>
+                                
+                        </div>
+                        
+                            
+                            
+                        <div>
+                            <p style="color: darkgoldenrod;position: absolute; height: 5%;width: 40%; left: 58%; top: 17%;">{{title1}}</p>
+                        </div>
+
+
+                    <form method="POST">
+                        <br />
+                    <div >
+                        
+                        <textarea 
+                        style="top: 45%; width: 75%; height: 50%;"
+                         
+                        class="type-input3"
+                        id="content-input" 
+                        name="content-input"
+                        >{{edit_content}}</textarea>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <button style="position: absolute; top: 100%;width: 95%;" type="submit" class="btn btn-primary">Edit</button>
+                </form>
+                        {%endif%}
+
+                    {% endif %}
+
+
+                        </div>
+                          
+                    </div>
+                </div>
+            </div>
+                
+
+                    
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}
+                        
+                        

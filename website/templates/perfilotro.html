@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+{% block title %}  {% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+
+ .fixer {
+            
+            margin: auto;
+            top: 100px;
+            
+            text-align: center;
+            
+            
+            position:relative; 
+            
+            
+        }
+
+   </style>
+
+  {% endblock %}
+{%block section1%}
+<header class="masthead">
+            <div class="fixer" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                	<form method="POST" enctype="multipart/form-data">
+					<h1 align="center">{{ user.first_name }}</h1>
+					       
+					<li><img src="data:image/jpg;base64,{{usario_images}}" width=300 height="300"></li>
+					<br></br>
+					<label style="color:goldenrod;" for="photo">Name: {{ user.first_name }}</label>
+					<br></br>
+					<label style="color:goldenrod;" for="photo">Username (Q&A): {{ user.username }}</label>
+					<br></br>
+					<label style="color:goldenrod;" for="photo">Email: {{ user.email }}</label>
+					<br></br>
+					{% if user.stat %}
+					<label style="color:goldenrod;" for="photo">Status: <img src="{{ url_for('static', filename='assets/img/online.png') }}" width="30" height="30"> </label>
+					{% else %}
+					<label style="color:goldenrod;" for="photo">Status: <img src="{{ url_for('static', filename='assets/img/offline.png') }}" width="30" height="30"> </label>
+					{% endif %}
+					<br></br>
+					{% if c_user != user %}
+					<form method="POST">
+					<button type="submit" onclick=action="{{ url_for('views.msnn', qmsnusername=member_username) }}" class="btn btn-primary">Message</button>
+					{% if fcond == 1 %}
+					<input type="submit"  value="Add Friend"onclick=value="SAN" class="btn btn-primary" name="friend_addition" id="friend_addition" ></input>
+					{% else %}
+					<input type="submit" value="Remove Friend" onclick=value="KAN" class="btn btn-primary" name="friend_addition2" id="friend_addition2" ></input>
+					{% endif %}
+					</form>
+					{% endif %}	
+					
+					
+                </div>
+            </div>
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}

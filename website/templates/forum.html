@@ -1,0 +1,152 @@
+{% extends "index.html" %}
+{% block title %} Login {% endblock %}
+
+{% block special_head %}
+
+{% endblock %}
+{% block style %}
+<style type="text/css">
+        h1 {
+            color: green;
+        }
+          
+        .outer {
+            width: 90vw;
+            height: 90vh;
+            margin: 
+            border: 10px solid rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            position:relative; 
+            top:20px;
+            right:180px;
+        }
+          
+        .inner {
+            width: 90vw;
+            height: 90vh;
+            margin: auto;
+            
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            padding: 5px;
+            position:relative; 
+            top:70px;
+            
+        }
+        
+       
+
+        .onlinetable {
+            position: relative;
+            width: 15%;
+            height: 80%;
+            
+            
+            float: right;
+            
+            
+            
+            color:goldenrod;
+            text-align: center;
+            background: rgba(0, 0, 0, .4);
+            border-radius: 5px;
+            
+             
+            
+            
+        }
+
+        .online {
+            
+            color:darkgreen;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .offline {
+            
+            color:darkred;
+            
+            background: rgba(0, 0, 0, .4);
+            
+            position:relative; 
+            
+            
+        }
+
+        .iconbutton {
+            
+            color:goldenrod;
+            
+            background: rgba(0, 0, 0, .4);
+
+            bottom: 2px;
+
+            float: right;
+            
+            position:relative; 
+            
+            
+        }
+    </style>
+{% endblock %}
+
+
+
+{%block section1%}
+
+<header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                	<form method="POST">
+					
+        			<div class="inner">
+						<h1>Q&A</h1>
+						<div class="onlinetable">
+
+							{% for member in members %}
+							{% if member.stat %}
+							<p class="online">{{member.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=member.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-user"></i></button> </p>
+							{% else %}
+							<p class="offline">{{member.username}} <button onclick=action="{{ url_for('views.perfilz', user_name=member.username) }}" class="iconbutton" class="icon icon-enter"><i class="fa fa-user"></i></button> </p>
+							{% endif %}
+							{%endfor%}
+							
+						
+							
+
+							
+						</div>
+           			 
+        			</div>
+    			</div>
+    		</div>
+
+					
+{%endblock%}
+
+{%block section2%}
+
+{%endblock%}
+
+{%block section3%}
+
+{%endblock%}
+
+{%block section4%}
+
+{%endblock%}
+
+{%block section5%}
+
+{%endblock%}
+
+{%block content%}
+
+
+{%endblock%}
